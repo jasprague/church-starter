@@ -20,12 +20,12 @@ export async function GET() {
       data: result,
       message: 'Sanity connection successful'
     })
-  } catch (error) {
+  } catch (error: any) {
     return NextResponse.json({
       success: false,
-      error: error.message,
-      stack: error.stack,
-      name: error.name
+      error: error.message || 'Unknown error',
+      stack: error.stack || 'No stack trace',
+      name: error.name || 'Unknown error type'
     }, { status: 500 })
   }
 }
